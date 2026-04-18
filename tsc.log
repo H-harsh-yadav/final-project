@@ -1,0 +1,9 @@
+﻿src/components/stocks/PriceChart.tsx(64,18): error TS2345: Argument of type '{ sma: number | null; ema: number | null; date: string; price: number; }[]' is not assignable to parameter of type 'SetStateAction<HistoricalData[]>'.
+  Type '{ sma: number | null; ema: number | null; date: string; price: number; }[]' is not assignable to type 'HistoricalData[]'.
+    Type '{ sma: number | null; ema: number | null; date: string; price: number; }' is not assignable to type 'HistoricalData'.
+      Types of property 'sma' are incompatible.
+        Type 'number | null' is not assignable to type 'number | undefined'.
+          Type 'null' is not assignable to type 'number | undefined'.
+src/components/ui/calendar.tsx(57,9): error TS2353: Object literal may only specify known properties, and 'IconLeft' does not exist in type 'Partial<CustomComponents>'.
+src/components/ui/calendar.tsx(57,22): error TS7031: Binding element 'className' implicitly has an 'any' type.
+src/components/ui/calendar.tsx(60,23): error TS7031: Binding element 'className' implicitly has an 'any' type.

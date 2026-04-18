@@ -1,0 +1,119 @@
+{
+  "entities": {
+    "UserProfile": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "UserProfile",
+      "type": "object",
+      "description": "Represents a user's profile within the StockBro application.",
+      "properties": {
+        "email": {
+          "type": "string",
+          "description": "User's email address.",
+          "format": "email"
+        },
+        "firstName": {
+          "type": "string",
+          "description": "User's first name."
+        },
+        "lastName": {
+          "type": "string",
+          "description": "User's last name."
+        }
+      },
+      "required": [
+        "email"
+      ]
+    },
+    "PortfolioItem": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "PortfolioItem",
+      "type": "object",
+      "description": "Represents a single stock holding for a user.",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Reference to UserProfile."
+        },
+        "symbol": {
+          "type": "string",
+          "description": "Stock symbol (e.g., AAPL)."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the stock."
+        },
+        "shares": {
+          "type": "number",
+          "description": "Number of shares held."
+        },
+        "purchasePrice": {
+          "type": "number",
+          "description": "Price at which the shares were purchased."
+        },
+        "purchaseDate": {
+          "type": "string",
+          "description": "Date the shares were purchased.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "userId",
+        "symbol",
+        "name",
+        "shares",
+        "purchasePrice",
+        "purchaseDate"
+      ]
+    },
+    "InvestmentStrategy": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "InvestmentStrategy",
+      "type": "object",
+      "description": "Represents a user's investment strategy.",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Reference to UserProfile."
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of the investment strategy."
+        },
+        "description": {
+          "type": "string",
+          "description": "Detailed description of the investment strategy."
+        },
+        "createdAt": {
+            "type": "string",
+            "format": "date-time"
+        }
+      },
+      "required": [
+        "userId",
+        "title",
+        "description",
+        "createdAt"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "google.com"
+    ]
+  },
+  "firestore": {
+    "/users/{userId}": {
+        "schema": { "$ref": "#/entities/UserProfile" },
+        "description": "Stores user profile information. The 'userId' parameter is the Firebase Authentication UID."
+    },
+    "/users/{userId}/portfolio/{itemId}": {
+        "schema": { "$ref": "#/entities/PortfolioItem" },
+        "description": "Stores portfolio items (stock holdings) for a user."
+    },
+    "/users/{userId}/strategies/{strategyId}": {
+        "schema": { "$ref": "#/entities/InvestmentStrategy" },
+        "description": "Stores investment strategies created by a user."
+    }
+  }
+}
