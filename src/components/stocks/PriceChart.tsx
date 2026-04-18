@@ -12,7 +12,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { motion } from "framer-motion";
 
 type HistoricalData = {
   date: string;
@@ -81,24 +80,13 @@ export function PriceChart() {
   if (loading) {
     return (
       <div className="h-[400px] w-full flex items-center justify-center">
-        <motion.div
-          animate={{ opacity: [0.3, 1, 0.3] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-          className="text-sm text-muted-foreground"
-        >
-          Loading chart data...
-        </motion.div>
+        <div className="text-sm text-muted-foreground animate-pulse">Loading chart data...</div>
       </div>
     );
   }
 
   return (
-    <motion.div 
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-      className="flex flex-col gap-4"
-    >
+    <div className="flex flex-col gap-4">
       <div className="flex gap-2 justify-end">
         <Button 
           variant={showSMA ? "default" : "outline"} 
@@ -199,6 +187,6 @@ export function PriceChart() {
             </AccordionContent>
         </AccordionItem>
     </Accordion>
-    </motion.div>
+    </div>
   );
 }
