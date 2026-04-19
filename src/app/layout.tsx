@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { Header } from '@/components/layout/Header';
 import { Toaster } from '@/components/ui/toaster';
+import { Chatbot } from '@/components/ui/chatbot';
 import { FirebaseClientProvider } from '@/firebase';
 import { StockPriceProvider } from '@/context/stock-price-provider';
 import { ThemeProvider } from '@/components/theme-provider';
@@ -44,6 +45,7 @@ export default function RootLayout({
                 <Header />
                 <main className="flex-1">{children}</main>
               </div>
+              <Chatbot />
               <Toaster />
             </StockPriceProvider>
           </FirebaseClientProvider>

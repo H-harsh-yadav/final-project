@@ -3,7 +3,7 @@
 import { useState, useMemo, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { TrendingUp, TrendingDown, Wallet, Search, X, ArrowRight, ArrowUpRight, ArrowDownRight, Star, Bot, Globe, Sparkles, Newspaper, Clock } from 'lucide-react';
+import { TrendingUp, TrendingDown, Wallet, Search, X, ArrowRight, ArrowUpRight, ArrowDownRight, Star, Bot, Globe, Newspaper, Clock } from 'lucide-react';
 import type { Stock } from '@/lib/mock-data';
 import { mockStocks, mockIndianStocks } from '@/lib/mock-data';
 import { Button } from '@/components/ui/button';
@@ -141,13 +141,6 @@ function Hero() {
         </div>
       </div>
 
-      {/* Floating sparkle FAB */}
-      <button
-        aria-label="AI assistant"
-        className="fixed bottom-6 right-6 z-40 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-[#06b6d4] via-[#8b5cf6] to-[#ec4899] shadow-[0_0_30px_-4px_rgba(139,92,246,0.8)] transition-transform hover:scale-110"
-      >
-        <Sparkles className="h-6 w-6 text-white" />
-      </button>
     </section>
   );
 }

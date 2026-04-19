@@ -16,12 +16,14 @@ export async function POST(req: NextRequest) {
       content: [{ text: m.content }]
     }));
 
-    // Generate response using Genkit
     const response = await ai.generate({
-      // We need to provide the prompt and history.
-      // Genkit accepts an array of messages natively if it's the `messages` array in generate options
+      system: `You are StockBro AI, a concise and knowledgeable financial assistant embedded in the StockBro trading dashboard.
+- Help users understand stocks, markets, portfolios, charts, and trading concepts.
+- Explain AI-driven analytics and technical indicators in plain language.
+- When asked for predictions, give balanced takes and always note that this is educational guidance, not financial advice.
+- Prefer short, scannable answers with bullet points when useful.
+- If you do not know a current market price, say so — do not fabricate data.`,
       messages: genkitMessages,
-      // You can define a system prompt as the first message if needed, or explicitly pass it to generate
     });
 
     return NextResponse.json({ text: response.text });
