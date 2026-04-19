@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { Search, Bell, Check, X, TrendingUp, TrendingDown, AlertTriangle, Newspaper } from 'lucide-react';
+import { Search, Bell, Check, X, TrendingUp, TrendingDown, AlertTriangle, Newspaper, Zap } from 'lucide-react';
 import { useUser } from '@/firebase';
 import { UserNav } from '@/components/auth/UserNav';
 import { Button } from '@/components/ui/button';
@@ -43,8 +43,8 @@ const NAV = [
   { href: '/markets', label: 'Markets' },
   { href: '/portfolio', label: 'Portfolio' },
   { href: '/news', label: 'News' },
-  { href: '/strategies', label: 'Strategies' },
-  { href: '/tutorial', label: 'Learn' },
+  { href: '/strategies', label: 'Analytics' },
+  { href: '/tutorial', label: 'Tutorial' },
 ];
 
 export function Header() {
@@ -87,11 +87,14 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/80 backdrop-blur-md">
       <div className="mx-auto flex h-14 max-w-7xl items-center gap-6 px-6">
         {/* Brand */}
-        <Link href="/" className="flex items-center gap-2">
-          <div className="flex h-7 w-7 items-center justify-center rounded-[8px] bg-primary text-primary-foreground text-[11px] font-bold">
-            SB
+        <Link href="/" className="flex items-center gap-2.5 group">
+          <div className="relative flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-[#8b5cf6] via-[#a855f7] to-[#ec4899] shadow-[0_0_20px_-2px_rgba(139,92,246,0.5)]">
+            <Zap className="h-4 w-4 text-white" fill="white" strokeWidth={2.5} />
           </div>
-          <span className="text-[15px] font-semibold tracking-tight">StockBro</span>
+          <div className="flex flex-col leading-none">
+            <span className="text-[15px] font-bold tracking-tight">StockBro</span>
+            <span className="text-[9px] font-semibold uppercase tracking-[0.15em] text-muted-foreground">AI Trading</span>
+          </div>
         </Link>
 
         {/* Nav */}
@@ -103,9 +106,9 @@ export function Header() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  'rounded-full px-3 py-1.5 text-sm font-medium transition-colors',
+                  'rounded-full px-4 py-1.5 text-sm font-medium transition-all',
                   active
-                    ? 'bg-secondary text-foreground'
+                    ? 'bg-gradient-to-r from-[#8b5cf6]/30 to-[#ec4899]/20 text-foreground shadow-[0_0_20px_-4px_rgba(139,92,246,0.6)] ring-1 ring-[#a855f7]/40'
                     : 'text-muted-foreground hover:bg-secondary/60 hover:text-foreground',
                 )}
               >
@@ -128,7 +131,7 @@ export function Header() {
                 if (e.key === 'Escape') { setShowResults(false); setQ(''); }
                 if (e.key === 'Enter' && results.length) pickStock(results[0]);
               }}
-              placeholder="Search stocks…"
+              placeholder="Search AAPL, TSLA…"
               className="w-full bg-transparent text-sm outline-none placeholder:text-muted-foreground"
             />
             <kbd className="ml-2 rounded border border-border bg-background/60 px-1.5 py-0.5 text-[10px] font-medium text-muted-foreground">/</kbd>
@@ -244,8 +247,8 @@ export function Header() {
               <Button asChild variant="ghost" size="sm" className="rounded-full hidden sm:inline-flex hover:bg-secondary">
                 <Link href="/login">Log in</Link>
               </Button>
-              <Button asChild size="sm" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90">
-                <Link href="/signup">Sign up</Link>
+              <Button asChild size="sm" className="rounded-full bg-gradient-to-r from-[#8b5cf6] via-[#a855f7] to-[#ec4899] text-white font-semibold shadow-[0_0_20px_-4px_rgba(168,85,247,0.8)] hover:opacity-90 border-0">
+                <Link href="/signup">Sign Up</Link>
               </Button>
             </div>
           )}
